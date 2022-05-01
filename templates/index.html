@@ -1,0 +1,40 @@
+<html>
+    {{if .Username}}
+        You are a logged in {{.Username}}!
+
+        <a href="logout">Logout</a>
+
+        <form action="/userRename">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username"><br>
+        
+            <button type="submit" id="submit">Rename User</button>
+        </form>
+
+        <form action="/userDelete">
+            <button type="submit" id="submit">Delete My User Account</button>
+        </form>
+
+        {{if .IsAdmin}}
+            <form action="/userAdd">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username"><br>
+            
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password"><br>
+            
+                <button type="submit" id="submit">Add User</button>
+            </form>
+        {{end}}
+
+        {{with .CallbackTemplatesHTML}}
+            {{.}}
+        {{else}}
+            <p>It looks like you don't have any extensions installed!</p></br>
+            <p>Please check out uSuite's github page for popular extensions!</p>
+        {{end}}
+    {{else}}
+        <p>This page briefly explains what uSuite is with links to the repo/documentation.</p></html><br>
+        <a href="login">Login</a>
+    {{end}}
+</html>
